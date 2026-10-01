@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mathematical Miracles Dashboard - Read Quran for Peace</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Chart.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        .arabic-text { font-family: 'Amiri', serif; }
+        
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 6px; height: 6px; }
+        ::-webkit-scrollbar-track { background: #f1f5f9; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+    </style>
+</head>
+<body class="bg-[#F8F9FA] text-[#1F2937]">
+
+    <!-- Navigation Header with Fixed Functional Links -->
+    <header class="bg-white border-b border-gray-200 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <div class="flex items-center space-x-3 cursor-pointer" onclick="window.location.href='index.html'">
+                <div class="bg-[#1B4D3E] text-white p-2 rounded-lg font-bold text-xl">📖</div>
+                <span class="text-xl font-bold text-[#1B4D3E]">Read Quran for Peace</span>
+            </div>
+            <nav class="hidden md:flex space-x-6 text-sm font-medium text-gray-600">
+                <a href="https://www.readquranforpeace.net" target="_blank" class="hover:text-[#1B4D3E] transition">Home</a>
+                <a href="https://www.readquranforpeace.net/quran" target="_blank" class="hover:text-[#1B4D3E] transition">Quran</a>
+                <a href="index.html" class="text-[#1B4D3E] font-semibold border-b-2 border-[#1B4D3E] pb-1">Mathematical Miracles</a>
+                <a href="https://www.readquranforpeace.net/tafsir" target="_blank" class="hover:text-[#1B4D3E] transition">Tafsir</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+        
+        <!-- Hero/Introduction Section with Images -->
+        <div class="relative bg-[#1B4D3E] text-white rounded-3xl p-10 mb-10 shadow-xl overflow-hidden flex flex-col md:flex-row items-center justify-between">
+            
+            <!-- Background Image Overlay -->
+            <div class="absolute inset-0 opacity-15 bg-cover bg-center pointer-events-none" style="background-image: url('images/quran-bg.jpg');"></div>
+
+            <!-- Content -->
+            <div class="max-w-2xl z-10 mb-6 md:mb-0">
+                <h1 class="text-4xl font-extrabold mb-4 tracking-tight">Mathematical Miracles of the Qur'an</h1>
+                <p class="text-emerald-100 text-lg leading-relaxed">
+                    Unveiling the profound numerical harmony, precise word frequencies, and structured patterns embedded within the Holy text, demonstrating its divine precision.
+                </p>
+            </div>
+
+            <!-- Right Side Banner Image & Stats -->
+            <div class="flex items-center space-x-6 z-10">
+                <img src="images/hero-banner.png" alt="Quran Banner" class="w-32 h-32 object-contain rounded-2xl shadow-md border border-emerald-600 bg-[#153d31] p-2 hidden sm:block">
+                
+                <div class="flex flex-col space-y-2">
+                    <div class="text-center px-4 py-2 border border-emerald-700 rounded-2xl bg-[#153d31]">
+                        <div class="text-3xl font-bold">114</div>
+                        <div class="text-[10px] uppercase tracking-wider text-emerald-200">Surahs</div>
+                    </div>
+                     <div class="text-center px-4 py-2 border border-emerald-700 rounded-2xl bg-[#153d31]">
+                        <div class="text-3xl font-bold">6236</div>
+                        <div class="text-[10px] uppercase tracking-wider text-emerald-200">Ayahs</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Dashboard Grid System -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            
+            <!-- Left Column (Main Chart Card) -->
+            <div class="lg:col-span-2 bg-white p-8 rounded-3xl shadow-sm border border-gray-100">
+                <div class="flex items-center justify-between mb-6">
+                    <div>
+                        <h2 class="text-2xl font-bold text-gray-800 mb-1">Key Concept Frequency</h2>
+                        <p class="text-sm text-gray-500">Comparative analysis of balanced conceptual pairs in the Qur'an.</p>
+                    </div>
+                    <div class="text-sm font-medium text-emerald-700 bg-emerald-50 px-3 py-1 rounded-full">All Data</div>
+                </div>
+                
+                <!-- Interactive Chart.js Container -->
+                <div class="relative h-96">
+                    <canvas id="mainFrequencyChart"></canvas>
+                </div>
+            </div>
+
+            <!-- Right Column (Insights & Direct Link Cards) -->
+            <div class="flex flex-col gap-8">
+                
+                <!-- Insight Card 1: Featured Balance -->
+                <div class="bg-white p-6 rounded-3xl shadow-sm border border-gray-100">
+                    <h3 class="text-lg font-semibold text-gray-800 mb-4">Featured Balance</h3>
+                    <div class="bg-emerald-50 border-l-4 border-[#1B4D3E] p-4 rounded-r-lg">
+                        <p class="text-sm text-gray-700 font-medium mb-1">Equal Frequency of Opposites</p>
+                        <p class="text-xs text-gray-500">Words like <span class="font-bold text-[#1B4D3E]">Dunya</span> (World) and <span class="font-bold text-[#1B4D3E]">Akhirah</span> (Hereafter) both appear exactly <span class="font-bold text-emerald-950 text-lg">115 times</span>.</p>
+                    </div>
+                </div>
+
+                 <!-- Insight Card 2: Action Panel / Deep Linking -->
+                 <div class="bg-white p-6 rounded-3xl shadow-sm border border-gray-100 flex flex-col h-full justify-between">
+                    <div>
+                        <h3 class="text-lg font-semibold text-gray-800 mb-4">Explore the Verses</h3>
+                        <p class="text-sm text-gray-600 mb-4">
+                            Click any data point on the chart, or select a specific Surah to view the related Ayahs and their context in the digital reader.
+                        </p>
+                    </div>
+                    <a href="https://www.readquranforpeace.net/quran" target="_blank" class="block text-center bg-[#1B4D3E] text-white py-4 rounded-2xl font-semibold hover:bg-emerald-900 transition duration-300 flex items-center justify-center space-x-3">
+                        <span>Open Quran Reader</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                        </svg>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t border-gray-200 py-12 mt-20">
+        <div class="max-w-7xl mx-auto px-4 text-center text-sm text-gray-500">
+            &copy; 2026 Read Quran for Peace. All rights reserved. 
+            <span class="mx-2">|</span>
+            <a href="https://www.readquranforpeace.net" target="_blank" class="hover:text-[#1B4D3E]">Privacy Policy</a>
+        </div>
+    </footer>
+
+    <!-- Chart Script -->
+    <script>
+        const ctx = document.getElementById('mainFrequencyChart').getContext('2d');
+        const mainFrequencyChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: [
+                    ['Dunya (World)', 'Akhirah (Hereafter)'],
+                    ['Malaika (Angels)', 'Shayateen (Devils)'],
+                    ['Hayat (Life)', 'Mawt (Death)'],
+                    ['Rjul (Man)', 'Mara (Woman)'],
+                    ['Kufr (Disbelief)', 'Iman (Faith)']
+                ],
+                datasets: [{
+                    label: 'Frequency Count',
+                    data: [115, 88, 145, 24, 17],
+                    backgroundColor: [
+                        '#1B4D3E',
+                        '#388E3C',
+                        '#66BB6A',
+                        '#81C784',
+                        '#A5D6A7'
+                    ],
+                    borderRadius: 12,
+                    barThickness: 40,
+                    hoverBackgroundColor: '#0F2921'
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { display: false },
+                    tooltip: {
+                        backgroundColor: '#ffffff',
+                        titleColor: '#1F2937',
+                        bodyColor: '#1B4D3E',
+                        borderColor: '#E5E7EB',
+                        borderWidth: 1,
+                        padding: 12,
+                        cornerRadius: 8
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        grid: { color: '#F3F4F6', drawBorder: false },
+                        ticks: { font: { size: 12, family: 'Plus Jakarta Sans' }, color: '#6B7280' }
+                    },
+                    x: {
+                        grid: { display: false },
+                        ticks: { font: { size: 12, family: 'Plus Jakarta Sans' }, color: '#6B7280', maxRotation: 0, autoSkip: false }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
